@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto21
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+      - ls -lrt
+      - ls target/
+      - pwd
+      - ls target/ronyo.xyz-be-0.0.1-SNAPSHOT.jar
+artifacts:
+  files:
+    - target/ronyo.xyz-be-0.0.1-SNAPSHOT.jar
+  name: ronyo
+  type: jar
