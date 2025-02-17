@@ -1,4 +1,4 @@
-package org.ronyo.ronyo.xyz_be.beans;
+package org.ronyo.ronyo.xyz_be.beans.aws;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
-public class Aws {
+public class S3 {
 
     @Bean
     S3Client s3Client() {

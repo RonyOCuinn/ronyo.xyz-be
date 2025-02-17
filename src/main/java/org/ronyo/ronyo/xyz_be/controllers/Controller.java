@@ -10,14 +10,20 @@ import org.bson.conversions.Bson;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.Bucket;
+import software.amazon.awssdk.services.s3.model.ListBucketsResponse;
 
 @RestController
 public class Controller {
 
     private final MongoClient mongoClient;
+    private final S3Client s3Client;
 
-    public Controller(MongoClient mongoClient) {
+    public Controller(MongoClient mongoClient,
+                      S3Client s3Client) {
         this.mongoClient = mongoClient;
+        this.s3Client = s3Client;
     }
 
     @GetMapping
@@ -34,6 +40,12 @@ public class Controller {
         } catch (MongoException mongoException) {
             System.out.println("Uh oh");
         }
+    }
+
+    @GetMapping("/test-sdk")
+    public String testSdk() {
+        ListBucketsResponse listBucketsResponse = s3Client.listBuckets();
+        return listBucketsResponse.toString();
     }
 
 }
